@@ -309,6 +309,19 @@ app.get('/api/admin/affiliates', authAdmin, async (req, res) => {
 
 // ==================== INICIAR SERVIDOR ====================
 const PORT = process.env.PORT || 3000;
+// Rota raiz amigável
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'online', 
+    message: 'PromptXtreme API rodando!', 
+    endpoints: {
+      products: '/api/products',
+      createPayment: '/api/create-payment',
+      paymentStatus: '/api/payment-status/:id',
+      adminLogin: '/api/admin/login'
+    }
+  });
+});
 app.listen(PORT, () => {
   console.log(`🔥 Backend rodando na porta ${PORT}`);
 });
